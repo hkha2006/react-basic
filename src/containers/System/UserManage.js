@@ -1,17 +1,23 @@
 import React, { Component } from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers } from '../../services/userService';
+import { getAllUsers, createNewUserService } from '../../services/userService';
+import ModalUser from './ModalUser'
 class UserManage extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            arrUser: []
+            arrUser: [],
+            isOpenModalUser: false,
         }
     }
 
     async componentDidMount() {
+        await this.getAllUsers()
+    }
+
+    getAllUsers = async () => {
         let response = await getAllUsers('all')
         if (response && response.errCode === 0) {
             this.setState({
@@ -21,13 +27,52 @@ class UserManage extends Component {
         }
     }
 
+    handleAddNewUser = () => {
+        this.setState({
+            isOpenModalUser: true
+        })
+    }
+
+    toggleUserModal = () => {
+        this.setState({
+            isOpenModalUser: !this.state.isOpenModalUser
+        })
+    }
+
+    createNewUser = async (data) => {
+        try {
+            let response = await createNewUserService(data)
+            console.log('create new user', response)
+            if (response && response.errCode !== 0) {
+                alert(response.message)
+            }
+            else {
+                await this.getAllUsers();
+                this.toggleUserModal();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
+
 
     render() {
         let arrUser = this.state.arrUser;
+        // console.log(arrUser)
         return (
             <div className="user-container">
+                <ModalUser
+                    isOpen={this.state.isOpenModalUser}
+                    toggle={this.toggleUserModal}
+                    createNewUser={this.createNewUser}
+                />
                 <div className='title text-center'>Manage Users</div>
-                <div className='user-table mt-4 mx-3'>
+                <div className='user-table container'>
+                    <button type="button"
+                        className="btn btn-primary my-1 px-3"
+                        onClick={() => { this.handleAddNewUser() }}><i className="fas fa-plus"></i> Add New User</button>
                     <table className="table table-hover">
                         <thead>
                             <tr className='table-success'>
@@ -77,3 +122,4 @@ const mapDispatchToProps = dispatch => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserManage);
+
