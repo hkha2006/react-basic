@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { emitter } from '../../utils/emitter';
 class ModalUser extends Component {
 
   constructor(props) {
@@ -14,20 +15,27 @@ class ModalUser extends Component {
       address: '',
       phonenumber: ''
     }
+
+    this.listenToEmitter();
+  }
+
+  listenToEmitter() {
+    emitter.on('EVENT_CLEAR_MODAL_DATA', () => {
+      this.setState({
+        email: '',
+        password: '',
+        firstName: '',
+        lastName: '',
+        address: '',
+        phonenumber: ''
+      })
+    })
   }
 
   componentDidMount() {
   }
 
   toggle = () => {
-    this.setState({
-      email: '',
-      password: '',
-      firstName: '',
-      lastName: '',
-      address: '',
-      phonenumber: ''
-    })
     this.props.toggle()
   }
 
@@ -58,7 +66,6 @@ class ModalUser extends Component {
     }
     else {
       this.props.createNewUser(this.state)
-
     }
   }
   render() {
@@ -167,7 +174,7 @@ class ModalUser extends Component {
         </ModalBody>
         <ModalFooter>
           <Button color="primary" onClick={() => { this.handleAddNewUser() }}>
-            Do Something
+            Add
           </Button>{' '}
           <Button color="secondary" onClick={() => { this.toggle() }}>
             Cancel

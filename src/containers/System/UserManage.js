@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 // import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
-import { getAllUsers, createNewUserService } from '../../services/userService';
+import { getAllUsers, createNewUserService, handleLogin, deleteUserService } from '../../services/userService';
 import ModalUser from './ModalUser'
+import { emitter } from '../../utils/emitter'
 class UserManage extends Component {
 
     constructor(props) {
@@ -49,11 +50,27 @@ class UserManage extends Component {
             else {
                 await this.getAllUsers();
                 this.toggleUserModal();
+                emitter.emit('EVENT_CLEAR_MODAL_DATA', { 'id': 'your id' })
             }
         } catch (error) {
             console.log(error)
         }
 
+    }
+
+    handleDeleteUser = async (user) => {
+        try {
+            let response = await deleteUserService(user.id)
+            if (response && response.errCode !== 0) {
+                alert(response.message)
+            }
+            else {
+                await this.getAllUsers();
+            }
+        } catch (error) {
+            console.log(error)
+        }
+        // console.log(userId)
     }
 
 
@@ -94,8 +111,8 @@ class UserManage extends Component {
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
-                                        <td><a href='#icon'><i className="material-icons">&#xE8B8;</i></a>
-                                            <a href='#icon' style={{ color: "red" }}><i className="material-icons">&#xE5C9;</i></a>
+                                        <td><a href='#icon'><i className="material-icons" >&#xE8B8;</i></a>
+                                            <a href='#icon' style={{ color: "red" }} onClick={() => { this.handleDeleteUser(item) }}><i className="material-icons">&#xE5C9;</i></a>
                                         </td>
                                     </tr>
                                 )
