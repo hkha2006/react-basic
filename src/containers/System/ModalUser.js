@@ -61,10 +61,7 @@ class ModalUser extends Component {
   }
 
   handleAddNewUser = () => {
-    if (!this.checkValidateInput()) {
-
-    }
-    else {
+    if (this.checkValidateInput()) {
       this.props.createNewUser(this.state)
     }
   }
