@@ -1,69 +1,79 @@
 import React, { Component } from 'react';
+import { FormattedMessage } from 'react-intl';
 import { connect } from 'react-redux';
 import './Header.scss'
+import { LANGUAGES } from "../../utils"
+import { changeLaguageApp } from '../../store/actions/appActions';
 
 class Header extends Component {
 
+    changeLaguage = (language) => {
+        this.props.changeLaguageAppRedux(language)
+    }
+
     render() {
+
+        let language = this.props.language
 
         return (
             <React.Fragment>
                 <div className='home-header-container'>
                     <div className='home-header-content'>
                         <div className='left-content'>
-                            <i classNameName="fa fa-bars" aria-hidden="true"></i>
+                            <i className="fas fa-bars"></i>
                             <div className='header-logo'></div>
                         </div>
                         <div className='center-content'>
                             <div className='child-content'>
                                 <div>
-                                    <b>Chuyên khoa</b>
+                                    <b><FormattedMessage id="home-header.speciality" /> </b>
                                 </div>
                                 <div className='subs-title'>
-                                    Tìm bác sĩ theo chuyên khoa
+                                    <FormattedMessage id="home-header.finddoctor" />
                                 </div>
                             </div>
                             <div className='child-content'>
                                 <div>
-                                    <b>Cơ sở y tế</b>
+                                    <b><FormattedMessage id="home-header.health-facilities" /></b>
                                 </div>
                                 <div className='subs-title'>
-                                    Chọn bệnh viện phòng khám
+                                    <FormattedMessage id="home-header.choose-hospital" />
                                 </div>
                             </div>
 
                             <div className='child-content'>
                                 <div>
-                                    <b>Bác sĩ</b>
+                                    <b><FormattedMessage id="home-header.doctor" /></b>
                                 </div >
                                 <div className='subs-title'>
-                                    Chọn bác sĩ giỏi
+                                    <FormattedMessage id="home-header.choose-good-doctor" />
                                 </div>
                             </div>
 
                             <div className='child-content'>
                                 <div>
-                                    <b>Gói khám</b>
+                                    <b><FormattedMessage id="home-header.checkup" /></b>
                                 </div>
                                 <div className='subs-title'>
-                                    Khám sức khỏe tổng quát
+                                    <FormattedMessage id="home-header.general-health-check" />
                                 </div>
                             </div>
 
                         </div>
                         <div className='right-content'>
-                            <i classNameName="fa fa-question-circle" aria-hidden="true">Hỗ trợ</i>
-                            <div className='flag'>VN</div>
+                            <div className='support'><i class="fas fa-question-circle"></i> <FormattedMessage id="home-header.support" /></div>
+                            <div className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}><span onClick={() => this.changeLaguage(LANGUAGES.VI)}>VN</span></div>
+                            <div className={language === LANGUAGES.EN ? 'language-en active' : 'language-en'}><span onClick={() => this.changeLaguage(LANGUAGES.EN)}>EN</span></div>
                         </div>
                     </div>
                 </div>
                 <div className='home-header-banner'>
                     <div className='content-up'>
                         <div className='title1'>
-                            NỀN TẢNG Y TẾ
+                            <FormattedMessage id="banner-header.title1" />
                         </div>
                         <div className='title2'>
-                            CHĂM SÓC SỨC KHỎE TOÀN DIỆN
+                            <FormattedMessage id="banner-header.title2" />
                         </div>
                         <div className='search'>
                             <i className="fa fa-search" aria-hidden="true"></i>
@@ -79,7 +89,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Khám chuyên khoa
+                                    <FormattedMessage id="banner-header.specialist-examination" />
                                 </div>
                             </div>
 
@@ -89,7 +99,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Khám tổng quát
+                                    <FormattedMessage id="banner-header.general-examination" />
                                 </div>
                             </div>
 
@@ -99,7 +109,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Xét nghiệm y học
+                                    <FormattedMessage id="banner-header.medical-test" />
                                 </div>
                             </div>
 
@@ -109,7 +119,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Sức khỏe tinh thần
+                                    <FormattedMessage id="banner-header.mental-health" />
                                 </div>
                             </div>
 
@@ -118,7 +128,7 @@ class Header extends Component {
                                     <i className="fa-solid fa-tooth"></i>
                                 </div>
                                 <div className='child-text'>
-                                    Khám nha khoa
+                                    <FormattedMessage id="banner-header.dental" />
                                 </div>
                             </div>
 
@@ -128,7 +138,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Gói phẫu thuật
+                                    <FormattedMessage id="banner-header.surgery-package" />
                                 </div>
                             </div>
 
@@ -138,7 +148,7 @@ class Header extends Component {
 
                                 </div>
                                 <div className='child-text'>
-                                    Sản phẩm y tế
+                                    <FormattedMessage id="banner-header.medical-products" />
                                 </div>
                             </div>
 
@@ -147,7 +157,7 @@ class Header extends Component {
                                     <i className="fa-solid fa-hospital"></i>
                                 </div>
                                 <div className='child-text'>
-                                    Sức khỏe doanh nghiệp
+                                    < FormattedMessage id="banner-header.bussiness-health" />
                                 </div>
                             </div>
 
@@ -171,6 +181,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
     return {
+        changeLaguageAppRedux: (language) => dispatch(changeLaguageApp(language))
     };
 };
 

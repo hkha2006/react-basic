@@ -1,4 +1,27 @@
 {
+    "home-header": {
+        "speciality": "Medical speciality",
+        "finddoctor": "Find a doctor by speciality ",
+        "health-facilities": "Health facilities",
+        "choose-hospital": "Choose hospital clinic",
+        "doctor": "Doctor",
+        "choose-good-doctor": "Choose a good doctor",
+        "checkup": "Checkup package",
+        "general-health-check": "General health check",
+        "support": "Support"
+    },
+    "banner-header": {
+        "title1": "COMPREHENSIVE HEALTHCARE",
+        "title2": "MEDICAL PLATFORM",
+        "specialist-examination": "Specialist examination",
+        "general-examination": "General examination",
+        "medical-test": "Medical test",
+        "mental-health": "Mental health",
+        "dental": "Dental examination",
+        "surgery-package": "surgery-package",
+        "medical-products": "Medical products",
+        "bussiness-health": "Bussiness health"
+    },
     "common": {
         "add": "Add",
         "edit": "Edit",
