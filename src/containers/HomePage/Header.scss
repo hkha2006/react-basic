@@ -23,7 +23,7 @@
             }
 
             i {
-                position: absolute;
+                // position: absolute;
                 font-size: 25px;
                 color: gray;
                 cursor: pointer;
@@ -103,8 +103,8 @@
 }
 
 .home-header-banner {
+    height: 670px;
     background: url('../../assets/backgroud.jpg');
-    height: 725px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -114,8 +114,7 @@
 
     .content-up {
         background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.1));
-        height: 55%;
-
+        height: 60%;
 
         .title1 {
             margin-top: 80px;
@@ -162,10 +161,10 @@
 
     .content-down {
         background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
-        height: 45%;
+        height: 40%;
 
         .options {
-            margin-top: 60px;
+            margin-top: 80px;
             display: flex;
             justify-content: space-between;
             margin-left: 80px;

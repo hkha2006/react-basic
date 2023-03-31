@@ -16,7 +16,7 @@ class Header extends Component {
         let language = this.props.language
 
         return (
-            <React.Fragment>
+            <div>
                 <div className='home-header-container'>
                     <div className='home-header-content'>
                         <div className='left-content'>
@@ -164,10 +164,8 @@ class Header extends Component {
 
                         </div>
                     </div>
-
-
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 
