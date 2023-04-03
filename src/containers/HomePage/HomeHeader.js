@@ -5,7 +5,7 @@ import './Header.scss'
 import { LANGUAGES } from "../../utils"
 import { changeLaguageApp } from '../../store/actions/appActions';
 
-class Header extends Component {
+class HomeHeader extends Component {
 
     changeLaguage = (language) => {
         this.props.changeLaguageAppRedux(language)
@@ -190,4 +190,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);

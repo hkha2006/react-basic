@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Header from './Header';
+import HomeHeader from './HomeHeader';
 // import { FormattedMessage } from 'react-intl';
 import Specialty from './Section/Specialty';
 import MedicalFacility from './Section/MedicalFacility';
@@ -25,7 +25,7 @@ class HomePage extends Component {
 
         return (
             <div>
-                <Header />
+                <HomeHeader />
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
                 <Doctor settings={settings} />
