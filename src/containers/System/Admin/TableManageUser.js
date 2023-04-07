@@ -28,9 +28,13 @@ class TableManageUser extends Component {
         this.props.deleteUser(id)
     }
 
+    handleEditUser = (data) => {
+        this.props.handleEditUserFromParent(data)
+    }
+
     render() {
         let arrUser = this.state.usersRedux
-        console.log('check all user', arrUser);
+        // console.log('check all user', arrUser);
         return (
             <div className="user-container">
                 <div className='title text-center'>Manage Users</div>
@@ -58,8 +62,10 @@ class TableManageUser extends Component {
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>
                                         <td>{item.address}</td>
-                                        <td><a href='#icon'><i className="material-icons" onClick={() => this.handleEditUser(item)}>&#xE8B8;</i></a>
-                                            <a href='#icon' style={{ color: "red" }} onClick={() => { this.handleDeleteUser(item.id) }}><i className="material-icons">&#xE5C9;</i></a>
+                                        <td><a href='#icon'><i className="material-icons"
+                                            onClick={() => { this.handleEditUser(item) }}>&#xE8B8;</i></a>
+                                            <a href='#icon' style={{ color: "red" }}
+                                                onClick={() => { this.handleDeleteUser(item.id) }}><i className="material-icons">&#xE5C9;</i></a>
                                         </td>
                                     </tr>
                                 )

@@ -49,6 +49,7 @@
         "gender": "Gender",
         "position": "Position",
         "img": "Image",
-        "submit": "Save"
+        "submit": "Save User",
+        "edit": "Save Change"
     }
 }

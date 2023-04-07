@@ -49,6 +49,7 @@
         "gender": "Giới tính",
         "position": "Chức danh",
         "img": "Ảnh",
-        "submit": "Lưu"
+        "submit": "Lưu User",
+        "edit": "Lưu thay đổi"
     }
 }
