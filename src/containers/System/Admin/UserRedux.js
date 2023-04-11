@@ -49,7 +49,7 @@ class UserRedux extends Component {
             let arrGenders = this.props.genderRedux
             this.setState({
                 genderArr: arrGenders,
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : ''
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : ''
             })
         }
 
@@ -57,7 +57,7 @@ class UserRedux extends Component {
             let arrPositions = this.props.positions
             this.setState({
                 positionArr: arrPositions,
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : ''
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : ''
             })
         }
 
@@ -65,7 +65,7 @@ class UserRedux extends Component {
             let arrRoles = this.props.roles
             this.setState({
                 roleArr: arrRoles,
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : ''
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : ''
             })
         }
 
@@ -80,9 +80,9 @@ class UserRedux extends Component {
                 lastName: '',
                 phoneNumber: '',
                 address: '',
-                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].key : '',
-                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].key : '',
-                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].key : '',
+                gender: arrGenders && arrGenders.length > 0 ? arrGenders[0].keyMap : '',
+                position: arrPositions && arrPositions.length > 0 ? arrPositions[0].keyMap : '',
+                role: arrRoles && arrRoles.length > 0 ? arrRoles[0].keyMap : '',
                 avt: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgUrl: ''
@@ -94,6 +94,7 @@ class UserRedux extends Component {
         let data = e.target.files
         let file = data[0]
         if (file) {
+            // chuyển ảnh thành base64
             let base64 = await CommonUtils.getBase64(file)
             // console.log('check file to base64', base64);
             let objectUrl = URL.createObjectURL(file)
@@ -178,6 +179,7 @@ class UserRedux extends Component {
 
     handleEditUser = (user) => {
         let imageBase64 = ''
+        // chuyển base64 thành ảnh
         if (user.image) {
             imageBase64 = new Buffer(user.image, 'base64').toString('binary')
         }
@@ -291,7 +293,7 @@ class UserRedux extends Component {
                                         onChange={(event) => { this.onChangeInput(event, 'gender') }}
                                     >
                                         {genders && genders.length > 0 && genders.map((item, index) =>
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                             </option>
                                         )}
@@ -306,7 +308,7 @@ class UserRedux extends Component {
                                         onChange={(event) => { this.onChangeInput(event, 'position') }}
                                     >
                                         {positions && positions.length > 0 && positions.map((item, index) =>
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                             </option>
                                         )}
@@ -320,7 +322,7 @@ class UserRedux extends Component {
                                         onChange={(event) => { this.onChangeInput(event, 'role') }}
                                     >
                                         {roles && roles.length > 0 && roles.map((item, index) =>
-                                            <option key={index} value={item.key}>
+                                            <option key={index} value={item.keyMap}>
                                                 {language === LANGUAGES.VI ? item.valueVi : item.valueEn}
                                             </option>
                                         )}

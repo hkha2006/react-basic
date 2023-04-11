@@ -129,10 +129,16 @@
                 }
             }
 
+            .slick-disabled {
+                display: none !important;
+            }
+
             .slick-next::before {
                 font-family: FontAwesome !important;
                 content: '\f105' !important;
             }
+
+
 
             &.media.row {
 

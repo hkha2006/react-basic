@@ -51,5 +51,9 @@
         "img": "Ảnh",
         "submit": "Lưu User",
         "edit": "Lưu thay đổi"
+    },
+    "homepage": {
+        "doctor": "Bác sĩ nổi bật",
+        "more-infor": "Xem thêm"
     }
 }

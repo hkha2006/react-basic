@@ -1,10 +1,10 @@
 import axios from "../axios"
 const handleLogin = (email, password) => {
-    return axios.post('api/login', { email, password })
+    return axios.post('/api/login', { email, password })
 }
 
 const getAllUsers = (inputId) => {
-    return axios.get(`api/get-all-users?id=${inputId}`)
+    return axios.get(`/api/get-all-users?id=${inputId}`)
 }
 
 const createNewUserService = (data) => {
@@ -20,7 +20,11 @@ const editUserService = (user) => {
 }
 
 const getAllCodeService = (type) => {
-    return axios.get(`api/allcode?type=${type}`)
+    return axios.get(`/api/allcode?type=${type}`)
+}
+
+const getTopDoctorHomeService = (limit) => {
+    return axios.get(`/api/top-doctor-home?limit=${limit}`)
 }
 export {
     handleLogin,
@@ -28,6 +32,7 @@ export {
     createNewUserService,
     deleteUserService,
     editUserService,
-    getAllCodeService
+    getAllCodeService,
+    getTopDoctorHomeService
 }
 

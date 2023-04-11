@@ -14,6 +14,7 @@ import './StyleHomePage.scss'
 
 class HomePage extends Component {
 
+
     render() {
         let settings = {
             dots: false,
