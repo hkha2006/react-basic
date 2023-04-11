@@ -9,7 +9,7 @@ import { path } from '../utils'
 import Home from '../routes/Home';
 import Login from './Auth/Login';
 import System from '../routes/System';
-import { CustomToastCloseButton } from '../components/CustomToast';
+// import { CustomToastCloseButton } from '../components/CustomToast';
 import ConfirmModal from '../components/ConfirmModal';
 import HomePage from './HomePage/HomePage';
 import CustomScrollbars from '../components/CustomScrollbars';
