@@ -3,6 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import './TableManageUser.scss'
 import * as actions from '../../../store/actions'
+import MarkdownIt from 'markdown-it';
+import MdEditor from 'react-markdown-editor-lite';
+import 'react-markdown-editor-lite/lib/index.css';
+
+const mdParser = new MarkdownIt(/* Markdown-it options */);
+
+// Finish!
+function handleEditorChange({ html, text }) {
+    console.log('handleEditorChange', html, text);
+}
 class TableManageUser extends Component {
 
     constructor(props) {
@@ -36,46 +46,49 @@ class TableManageUser extends Component {
         let arrUser = this.state.usersRedux
         // console.log('check all user', arrUser);
         return (
-            <div className="user-container">
-                <div className='title text-center'>Manage Users</div>
-                <div className='user-table container'>
-                    <button type="button"
-                        className="btn btn-primary my-1 px-3"
-                        onClick={() => { this.handleAddNewUser() }}><i className="fas fa-plus"></i> Add New User</button>
-                    <table className="table table-hover">
-                        <thead>
-                            <tr className='table-success'>
-                                <th scope="col">#</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">First name</th>
-                                <th scope="col">Last name</th>
-                                <th scope="col">Address</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {arrUser && arrUser.length > 0 && arrUser.map((item, index) => {
-                                return (
-                                    <tr key={index}>
-                                        <td>{index + 1}</td>
-                                        <td>{item.email}</td>
-                                        <td>{item.firstName}</td>
-                                        <td>{item.lastName}</td>
-                                        <td>{item.address}</td>
-                                        <td><a href='#icon'><i className="material-icons"
-                                            onClick={() => { this.handleEditUser(item) }}>&#xE8B8;</i></a>
-                                            <a href='#icon' style={{ color: "red" }}
-                                                onClick={() => { this.handleDeleteUser(item.id) }}><i className="material-icons">&#xE5C9;</i></a>
-                                        </td>
-                                    </tr>
-                                )
-                            })
-                            }
+            <React.Fragment>
+                <div className="user-container">
+                    <div className='title text-center'>Manage Users</div>
+                    <div className='user-table container'>
+                        <button type="button"
+                            className="btn btn-primary my-1 px-3"
+                            onClick={() => { this.handleAddNewUser() }}><i className="fas fa-plus"></i> Add New User</button>
+                        <table className="table table-hover">
+                            <thead>
+                                <tr className='table-success'>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Email</th>
+                                    <th scope="col">First name</th>
+                                    <th scope="col">Last name</th>
+                                    <th scope="col">Address</th>
+                                    <th scope="col">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {arrUser && arrUser.length > 0 && arrUser.map((item, index) => {
+                                    return (
+                                        <tr key={index}>
+                                            <td>{index + 1}</td>
+                                            <td>{item.email}</td>
+                                            <td>{item.firstName}</td>
+                                            <td>{item.lastName}</td>
+                                            <td>{item.address}</td>
+                                            <td><a href='#icon'><i className="material-icons"
+                                                onClick={() => { this.handleEditUser(item) }}>&#xE8B8;</i></a>
+                                                <a href='#icon' style={{ color: "red" }}
+                                                    onClick={() => { this.handleDeleteUser(item.id) }}><i className="material-icons">&#xE5C9;</i></a>
+                                            </td>
+                                        </tr>
+                                    )
+                                })
+                                }
 
-                        </tbody>
-                    </table>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-            </div>
+                <MdEditor style={{ height: '500px' }} renderHTML={text => mdParser.render(text)} onChange={handleEditorChange} />
+            </React.Fragment>
         );
     }
 
