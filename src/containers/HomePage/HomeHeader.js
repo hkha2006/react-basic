@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 import './Header.scss'
 import { LANGUAGES } from "../../utils"
 import { changeLaguageApp } from '../../store/actions/appActions';
+import { withRouter } from 'react-router';
+
 
 class HomeHeader extends Component {
 
@@ -11,17 +13,21 @@ class HomeHeader extends Component {
         this.props.changeLaguageAppRedux(language)
     }
 
+    returnToHome = () => {
+        this.props.history.push(`/home`)
+    }
+
     render() {
 
         let language = this.props.language
 
         return (
-            <div>
+            <React.Fragment>
                 <div className='home-header-container'>
                     <div className='home-header-content'>
                         <div className='left-content'>
                             <i className="fas fa-bars"></i>
-                            <div className='header-logo'></div>
+                            <div className='header-logo' onClick={() => this.returnToHome()}></div>
                         </div>
                         <div className='center-content'>
                             <div className='child-content'>
@@ -73,105 +79,107 @@ class HomeHeader extends Component {
                         </div>
                     </div>
                 </div>
-                <div className='home-header-banner'>
-                    <div className='content-up'>
-                        <div className='title1'>
-                            <FormattedMessage id="banner-header.title1" />
-                        </div>
-                        <div className='title2'>
-                            <FormattedMessage id="banner-header.title2" />
-                        </div>
-                        <div className='search'>
-                            <i className="fa fa-search" aria-hidden="true"></i>
+                {this.props.isShowBanner === true &&
+                    <div className='home-header-banner'>
+                        <div className='content-up'>
+                            <div className='title1'>
+                                <FormattedMessage id="banner-header.title1" />
+                            </div>
+                            <div className='title2'>
+                                <FormattedMessage id="banner-header.title2" />
+                            </div>
+                            <div className='search'>
+                                <i className="fa fa-search" aria-hidden="true"></i>
 
-                            <input type='text' placeholder='Tìm chuyên khoa khám bệnh' />
+                                <input type='text' placeholder='Tìm chuyên khoa khám bệnh' />
+                            </div>
+                        </div>
+                        <div className='content-down'>
+                            <div className='options'>
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="far fa-hospital" aria-hidden="true"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.specialist-examination" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-hospital-user"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.general-examination" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-microscope"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.medical-test" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-notes-medical"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.mental-health" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-tooth"></i>
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.dental" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-briefcase-medical"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.surgery-package" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa fa-ambulance" aria-hidden="true"></i>
+
+                                    </div>
+                                    <div className='child-text'>
+                                        <FormattedMessage id="banner-header.medical-products" />
+                                    </div>
+                                </div>
+
+                                <div className='option-child'>
+                                    <div className='child-icon'>
+                                        <i className="fa-solid fa-hospital"></i>
+                                    </div>
+                                    <div className='child-text'>
+                                        < FormattedMessage id="banner-header.bussiness-health" />
+                                    </div>
+                                </div>
+
+
+                            </div>
                         </div>
                     </div>
-                    <div className='content-down'>
-                        <div className='options'>
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="far fa-hospital" aria-hidden="true"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.specialist-examination" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-hospital-user"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.general-examination" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-microscope"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.medical-test" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-notes-medical"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.mental-health" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-tooth"></i>
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.dental" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-briefcase-medical"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.surgery-package" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa fa-ambulance" aria-hidden="true"></i>
-
-                                </div>
-                                <div className='child-text'>
-                                    <FormattedMessage id="banner-header.medical-products" />
-                                </div>
-                            </div>
-
-                            <div className='option-child'>
-                                <div className='child-icon'>
-                                    <i className="fa-solid fa-hospital"></i>
-                                </div>
-                                <div className='child-text'>
-                                    < FormattedMessage id="banner-header.bussiness-health" />
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
+            </React.Fragment>
         );
     }
 
@@ -190,4 +198,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(HomeHeader);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(HomeHeader));

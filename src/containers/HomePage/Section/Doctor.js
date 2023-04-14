@@ -6,6 +6,8 @@ import "slick-carousel/slick/slick-theme.css";
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from "../../../utils"
 import { FormattedMessage } from 'react-intl';
+import { withRouter } from 'react-router';
+
 class Doctor extends Component {
 
     constructor(props) {
@@ -23,6 +25,11 @@ class Doctor extends Component {
                 arrDoctors: this.props.topDoctors
             })
         }
+    }
+
+    handleViewDetailDoctor = (doctor) => {
+        console.log('check view detail', doctor);
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
     render() {
         // console.log('check props', this.props.topDoctors);
@@ -49,7 +56,7 @@ class Doctor extends Component {
                                 let nameVi = `${item.positionData.valueVi} ${item.lastName} ${item.firstName}`
                                 let nameEn = `${item.positionData.valueEn} ${item.firstName} ${item.lastName}`
                                 return (
-                                    <div className='img-custom doctor' key={index}>
+                                    <div className='img-custom doctor' key={index} onClick={() => this.handleViewDetailDoctor(item)}>
                                         <img src={`${imageBase64}`} alt='' />
                                         <div className='text-section doctor-name'>
                                             {language === LANGUAGES.VI ? nameVi : nameEn}
@@ -84,4 +91,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Doctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Doctor));
