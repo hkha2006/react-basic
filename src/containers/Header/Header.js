@@ -25,7 +25,6 @@ class Header extends Component {
         let menu = []
         if (userInfo) {
             let role = userInfo.roleId
-            console.log('check role', role);
             if (role === USER_ROLE.ADMIN) {
                 menu = adminMenu
             }
@@ -37,7 +36,6 @@ class Header extends Component {
         this.setState({
             menuApp: menu
         })
-        console.log('check', userInfo);
     }
     render() {
         const { processLogout, language, userInfo } = this.props;
