@@ -32,7 +32,6 @@ class Doctor extends Component {
         this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
     render() {
-        // console.log('check props', this.props.topDoctors);
         let settings = this.props.settings
         let arrTopDoctors = this.state.arrDoctors
         let language = this.props.language

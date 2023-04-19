@@ -6,7 +6,7 @@ import Select from 'react-select';
 import { LANGUAGES } from '../../../utils';
 import * as actions from '../../../store/actions';
 import DatePicker from '../../../components/Input/DatePicker';
-import moment from 'moment';
+// import moment from 'moment';
 import { toast } from 'react-toastify';
 import _ from 'lodash';
 import { saveBulkScheduleDoctor } from '../../../services/userService'

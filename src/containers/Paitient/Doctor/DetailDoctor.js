@@ -4,6 +4,7 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import './DetailDoctor.scss'
 import { getDetailDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
+import DoctorSchedule from '../../System/Doctor/DoctorSchedule';
 
 
 class DetailDoctor extends Component {
@@ -19,7 +20,7 @@ class DetailDoctor extends Component {
         if (this.props.match && this.props.match.params && this.props.match.params.id) {
             let id = this.props.match.params.id
             let res = await getDetailDoctor(id)
-            console.log('check data', res);
+            // console.log('check data', res);
 
             if (res && res.errCode === 0) {
                 this.setState({
@@ -33,7 +34,7 @@ class DetailDoctor extends Component {
 
     }
     render() {
-        console.log(this.props.match.params.id);
+        // console.log(this.props.match.params.id);
         let { language } = this.props
         let { detailDoctor } = this.state
         let nameVi = '', nameEn = ''
@@ -71,7 +72,14 @@ class DetailDoctor extends Component {
                     </div>
 
                     <div className='schedule-doctor'>
+                        <div className='content-left'>
+                            <DoctorSchedule
+                                detailDoctorId={detailDoctor && detailDoctor.id ? detailDoctor.id : -1}
+                            />
+                        </div>
+                        <div className='content-right'>
 
+                        </div>
                     </div>
 
                     <div className='detail-infor'>
