@@ -21,26 +21,30 @@ class DoctorSchedule extends Component {
     }
 
     async componentDidMount() {
-        let { language } = this.props
+        // let { language } = this.props
 
         let arrDays = []
         for (let i = 0; i < 7; i++) {
             let object = {}
 
-            if (i === 0) {
-                let ddMM = moment(new Date()).add(i, 'days').format('DD/MM')
+            // if (i === 0) {
+            //     let ddMM = moment(new Date()).add(i, 'days').format('DD/MM')
 
-                let todayVi = `Hôm nay - ${ddMM}`
-                object.labelVi = todayVi
+            //     let todayVi = `Hôm nay - ${ddMM}`
+            //     object.labelVi = todayVi
 
-                let todayEn = `Today - ${ddMM}`
-                object.labelEn = todayEn
+            //     let todayEn = `Today - ${ddMM}`
+            //     object.labelEn = todayEn
 
-            } else {
-                object.labelVi = this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd - DD/MM'))
-                object.labelEn = moment(new Date()).add(i, 'days').locale('en').format('ddd - DD/MM');
-                object.value = moment(new Date()).add(i, 'days').locale('en').startOf('day').valueOf()
-            }
+            // } else {
+            //     object.labelVi = this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd - DD/MM'))
+            //     object.labelEn = moment(new Date()).add(i, 'days').locale('en').format('ddd - DD/MM');
+            //     object.value = moment(new Date()).add(i, 'days').locale('en').startOf('day').valueOf()
+            // }
+
+            object.labelVi = this.capitalizeFirstLetter(moment(new Date()).add(i, 'days').format('dddd - DD/MM'))
+            object.labelEn = moment(new Date()).add(i, 'days').locale('en').format('ddd - DD/MM');
+            object.value = moment(new Date()).add(i, 'days').locale('en').startOf('day').valueOf()
             arrDays.push(object)
         }
         this.setState({
@@ -60,7 +64,6 @@ class DoctorSchedule extends Component {
     }
 
     handleOnChageSelect = async (event) => {
-        console.log('check detail doctor', this.props.detailDoctorId);
         if (this.props.detailDoctorId && this.props.detailDoctorId !== -1) {
             let doctorId = this.props.detailDoctorId
             let date = event.target.value
@@ -75,7 +78,7 @@ class DoctorSchedule extends Component {
     render() {
         let { allDays, allAvailableTime } = this.state
         let { language } = this.props
-        console.log('check allAvilabel', allAvailableTime);
+        // console.log('check allAvilabel', allAvailableTime);
         return (
             <div className='doctor-schedule-container'>
                 <div className='all-schedule'>
