@@ -5,7 +5,7 @@ import './DetailDoctor.scss'
 import { getDetailDoctor } from '../../../services/userService';
 import { LANGUAGES } from '../../../utils';
 import DoctorSchedule from '../../System/Doctor/DoctorSchedule';
-
+import DoctorExtraInfor from './DoctorExtraInfor';
 
 class DetailDoctor extends Component {
 
@@ -79,7 +79,7 @@ class DetailDoctor extends Component {
                             />
                         </div>
                         <div className='content-right'>
-
+                            <DoctorExtraInfor detailDoctorId={detailDoctor && detailDoctor.id ? detailDoctor.id : -1} />
                         </div>
                     </div>
 
