@@ -219,9 +219,9 @@ class UserRedux extends Component {
                 <div className='title'>
                     <FormattedMessage id="manage-user.add" />
                 </div>
-                {isLoadingGender ? <div class="text-center">
-                    <div class="spinner-border text-primary" role="status">
-                        <span class="sr-only">Loading...</span>
+                {isLoadingGender ? <div className="text-center">
+                    <div className="spinner-border text-primary" role="status">
+                        <span className="sr-only">Loading...</span>
                     </div>
                 </div> :
                     <div className='container'>

@@ -1,0 +1,32 @@
+.intro-doctor {
+    display: flex;
+    margin: 0 auto;
+
+
+    .content-left {
+        width: 20%;
+        background: center center no-repeat;
+        width: 110px;
+        height: 110px;
+        border-radius: 50%;
+        // margin: 10px;
+    }
+
+    .content-right {
+        width: calc(100% - 80px);
+        text-align: justify;
+        display: flex;
+        flex-direction: column;
+        padding-left: 10px;
+
+        .up {
+            padding-top: 5px;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .down {
+            padding-top: 5px;
+        }
+    }
+}

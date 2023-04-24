@@ -67,7 +67,7 @@ class HomeHeader extends Component {
 
                         </div>
                         <div className='right-content'>
-                            <div className='support'><i class="fas fa-question-circle"></i> <FormattedMessage id="home-header.support" /></div>
+                            <div className='support'><i className="fas fa-question-circle"></i> <FormattedMessage id="home-header.support" /></div>
                             <span className={language === LANGUAGES.VI ? 'language-vi active' : 'language-vi'}
                                 onClick={() => this.changeLaguage(LANGUAGES.VI)}>
                                 VN

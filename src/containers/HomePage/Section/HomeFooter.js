@@ -14,8 +14,8 @@ class HomeFooter extends Component {
                         <p>&copy; 2023 Dang Hoang Kha</p>
                     </div>
                     <div className='col-6 right'>
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-youtube"></i>
+                        <i className="fa-brands fa-facebook"></i>
+                        <i className="fa-brands fa-youtube"></i>
                     </div>
                 </div>
 
