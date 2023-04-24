@@ -4,12 +4,12 @@
 
 
     .content-left {
-        width: 20%;
-        background: center center no-repeat;
+        background-size: cover;
         width: 110px;
+        background-repeat: no-repeat;
         height: 110px;
         border-radius: 50%;
-        // margin: 10px;
+        background-position: center;
     }
 
     .content-right {

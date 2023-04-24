@@ -46,11 +46,11 @@ class BookingModal extends Component {
                     <div className='booking-modal-body'>
                         {/* {JSON.stringify(data)} */}
                         <div className='doctor-infor'>
-                            <ProfileDoctor doctorId={doctorId} />
+                            <ProfileDoctor doctorId={doctorId}
+                                isShowDescriptionDoctor={false}
+                                dataTime={data}
+                            />
                         </div>
-                        {/* <div className='price'>
-                            Giá khám: 500 000đ
-                        </div> */}
                         <div className='row'>
                             <div className='col-6 form-group'>
                                 <label>Họ tên</label>
