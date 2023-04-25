@@ -27,7 +27,6 @@ class DoctorExtraInfor extends Component {
         }
         if (this.props.detailDoctorId !== prevProps.detailDoctorId) {
             let res = await getExtraInforDoctorById(this.props.detailDoctorId)
-            console.log('check res', res);
             if (res && res.errCode === 0) {
                 this.setState({
                     extraInfor: res.data
@@ -45,7 +44,6 @@ class DoctorExtraInfor extends Component {
     render() {
         let { isShowDetail, extraInfor } = this.state
         let { language } = this.props
-        console.log('check state', this.state);
         return (
             <div className='doctor-extra-infor-container'>
                 <div className='content-up'>

@@ -54,7 +54,7 @@ class ProfileDoctor extends Component {
             return (
                 <>
                     <div>{time} - {date}</div>
-                    <div>Miễn phí đặt lịch</div>
+                    <div><FormattedMessage id='patient.booking-modal.freeBooking' /></div>
                 </>
             )
         }
@@ -70,7 +70,6 @@ class ProfileDoctor extends Component {
             nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.lastName} ${dataProfile.firstName}`
             nameEn = `${dataProfile.positionData.valueEn} ${dataProfile.firstName} ${dataProfile.lastName}`
         }
-        console.log('check state from profile', this.state);
         return (
             <>
                 <div className='intro-doctor'>
@@ -107,7 +106,7 @@ class ProfileDoctor extends Component {
 
                 </div>
                 <div className='price'>
-                    <span className='text-price'> Giá khám:
+                    <span className='text-price'> <FormattedMessage id='patient.booking-modal.priceBooking' />:
                         {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData && language === LANGUAGES.EN &&
                             <span>
                                 <NumericFormat

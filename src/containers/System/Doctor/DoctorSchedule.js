@@ -81,7 +81,6 @@ class DoctorSchedule extends Component {
     }
 
     hanleClickScheduleTime = (time) => {
-        console.log('check time', time);
         this.setState({
             isOpenModalTime: true,
             dataScheduleTimeModal: time
