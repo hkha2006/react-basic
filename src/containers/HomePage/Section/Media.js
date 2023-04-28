@@ -24,9 +24,9 @@ class Media extends Component {
                         <div className='col-6'>
                             <iframe width="560" height="315"
                                 src="https://www.youtube.com/embed/FyDQljKtWnI"
-                                title="YouTube video player" frameborder="0"
+                                title="YouTube video player"
                                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen></iframe>
+                                allowFullScreen></iframe>
                         </div>
 
                         <div className='col-6 paper'>

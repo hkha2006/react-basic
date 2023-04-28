@@ -16,7 +16,7 @@ class About extends Component {
                         </div>
                         <div className='about-address'>
                             <span><b>Công ty Cổ phần Công nghệ Bookingcare</b></span><br />
-                            <span> <i classNamne="fas fa-map-marker"></i>  Tầng 6, Tòa nhà D'Office, tổ 28, P. Dịch Vọng, Q. Cầu Giấy, Tp. Hà Nội.</span><br />
+                            <span> <i className="fas fa-map-marker"></i>  Tầng 6, Tòa nhà D'Office, tổ 28, P. Dịch Vọng, Q. Cầu Giấy, Tp. Hà Nội.</span><br />
                             <span><i className="fas fa-check"></i>  ĐKKD số: 0106790291. Sở KHĐT Hà Nội cấp ngày 16/03/2015.</span>
                         </div>
                     </div>

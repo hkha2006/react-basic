@@ -336,7 +336,7 @@ class UserRedux extends Component {
                                             onChange={(event) => this.handledOnChangeImg(event)}
                                         >
                                         </input>
-                                        <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i class="fas fa-upload fa-lg"></i></label>
+                                        <label className='label-upload' htmlFor='previewImg'>Tải ảnh <i className="fas fa-upload fa-lg"></i></label>
                                         <div className='preview-Img'
                                             style={{ backgroundImage: `url(${this.state.previewImgUrl})` }}
                                             onClick={() => this.openPreviewImg()}

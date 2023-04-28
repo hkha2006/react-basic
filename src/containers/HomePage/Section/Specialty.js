@@ -4,18 +4,29 @@ import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import coxuongkhop from '../../../assets/specialtyImg/co-xuong-khop.jpg';
-import cotsong from '../../../assets/specialtyImg/cot-song.jpg';
-import taimuihong from '../../../assets/specialtyImg/tai-mui-hong.jpg';
-import thankinh from '../../../assets/specialtyImg/than-kinh.jpg';
-import tieuhoa from '../../../assets/specialtyImg/tieu-hoa.jpg';
-import timmach from '../../../assets/specialtyImg/tim-mach.jpg';
-
-
+import { getAllSpecialties } from '../../../services/userService';
 
 class Specialty extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataSpecialty: []
+        }
+    }
+
+    async componentDidMount() {
+        let res = await getAllSpecialties()
+        console.log('check state', res);
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataSpecialty: res.data ? res.data : []
+            })
+        }
+    }
 
     render() {
+        let { dataSpecialty } = this.state
         let settings = this.props.settings
         return (
             <div className='section'>
@@ -26,30 +37,18 @@ class Specialty extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...settings}>
-                            <div className='img-custom'>
-                                <img src={coxuongkhop} alt='' />
-                                <div className='text-section'>Cơ xương khớp</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={cotsong} alt='' />
-                                <div className='text-section'>Cột sống</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={taimuihong} alt='' />
-                                <div className='text-section'>Tai mũi họng</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={thankinh} alt='' />
-                                <div className='text-section'>Thần kinh</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={tieuhoa} alt='' />
-                                <div className='text-section'>Tiêu hóa</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={timmach} alt='' />
-                                <div className='text-section'>Tim mạch</div>
-                            </div>
+                            {dataSpecialty && dataSpecialty.length > 0 &&
+                                dataSpecialty.map((item, index) => {
+                                    return (
+                                        <div className='img-custom' key={index}>
+                                            <img src={`${item.image}`} alt='' />
+                                            <div className='text-section'>{item.name}</div>
+                                        </div>
+                                    )
+                                })
+                            }
+
+
                         </Slider>
                     </div>
 
