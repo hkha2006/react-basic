@@ -108,7 +108,7 @@ class ManageSpecialty extends Component {
                         />
                     </div>
                     <div className='col-12'>
-                        <button type="button" class="save-specialty btn btn-info"
+                        <button type="button" className="save-specialty btn btn-info"
                             onClick={() => this.handleSaveSpecialty()}
                         >
                             Save</button>
