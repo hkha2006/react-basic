@@ -7,6 +7,7 @@ import { getProfileDoctorById } from '../../../services/userService';
 import { NumericFormat } from 'react-number-format';
 import _ from 'lodash';
 import moment from 'moment';
+import { Link } from 'react-router-dom';
 
 
 class ProfileDoctor extends Component {
@@ -38,9 +39,12 @@ class ProfileDoctor extends Component {
         return result
     }
 
-    componentDidUpdate(prevProps, prevState) {
+    async componentDidUpdate(prevProps, prevState) {
         if (this.props.doctorId !== prevProps.doctorId) {
-            // this.getInforDoctor(this.props.doctorId)
+            let data = await this.getInforDoctor(this.props.doctorId);
+            this.setState({
+                dataProfile: data,
+            });
         }
     }
 
@@ -64,7 +68,7 @@ class ProfileDoctor extends Component {
 
     render() {
         let { dataProfile } = this.state
-        let { language, isShowDescriptionDoctor, dataTime } = this.props
+        let { language, isShowDescriptionDoctor, dataTime, isShowLinkDetail, isShowPrice, doctorId } = this.props
         let nameVi = '', nameEn = ''
         if (dataProfile && dataProfile.positionData) {
             nameVi = `${dataProfile.positionData.valueVi} ${dataProfile.lastName} ${dataProfile.firstName}`
@@ -105,30 +109,38 @@ class ProfileDoctor extends Component {
 
 
                 </div>
-                <div className='price'>
-                    <span className='text-price'> <FormattedMessage id='patient.booking-modal.priceBooking' />:
-                        {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData && language === LANGUAGES.EN &&
-                            <span>
-                                <NumericFormat
-                                    className='currency'
-                                    displayType="text"
-                                    value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
-                                    thousandSeparator={true}
-                                    suffix='$' />
-                            </span>
-                        }
-                        {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData && language === LANGUAGES.VI &&
-                            <span>
-                                <NumericFormat
-                                    className='currency'
-                                    displayType="text"
-                                    value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
-                                    thousandSeparator={true}
-                                    suffix='đ' />
-                            </span>
-                        }
-                    </span>
-                </div>
+                {isShowLinkDetail === true &&
+                    <div className='view-detail-doctor'
+                    >
+                        <Link to={`/detail-doctor/${doctorId}`}>Xem thêm</Link>
+                    </div>}
+
+                {isShowPrice === true &&
+                    <div className='price'>
+                        <span className='text-price'> <FormattedMessage id='patient.booking-modal.priceBooking' />:
+                            {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData && language === LANGUAGES.EN &&
+                                <span>
+                                    <NumericFormat
+                                        className='currency'
+                                        displayType="text"
+                                        value={dataProfile.Doctor_Infor.priceTypeData.valueEn}
+                                        thousandSeparator={true}
+                                        suffix='$' />
+                                </span>
+                            }
+                            {dataProfile && dataProfile.Doctor_Infor && dataProfile.Doctor_Infor.priceTypeData && language === LANGUAGES.VI &&
+                                <span>
+                                    <NumericFormat
+                                        className='currency'
+                                        displayType="text"
+                                        value={dataProfile.Doctor_Infor.priceTypeData.valueVi}
+                                        thousandSeparator={true}
+                                        suffix='đ' />
+                                </span>
+                            }
+                        </span>
+                    </div>
+                }
 
             </>
         )
