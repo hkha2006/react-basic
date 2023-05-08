@@ -3,16 +3,32 @@ import { connect } from 'react-redux';
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import choray from '../../../assets/medicalfacility/cho-ray.jpg';
-import yduoc from '../../../assets/medicalfacility/dh-y-duoc.jpg';
-import hungviet from '../../../assets/medicalfacility/hung-viet.png';
-import meditec from '../../../assets/medicalfacility/meditec.jpeg';
-import quandoi from '../../../assets/medicalfacility/quan-doi.jpg';
-import vietduc from '../../../assets/medicalfacility/viet-duc.jpg';
+import { getAllClinics } from '../../../services/userService';
+import { withRouter } from 'react-router';
 
 class MedicalFacility extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataClinic: []
+        }
+    }
 
+    async componentDidMount() {
+        let res = await getAllClinics()
+        console.log('check state', res);
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataClinic: res.data ? res.data : []
+            })
+        }
+    }
+
+    handleViewDetailClinic = (clinic) => {
+        this.props.history.push(`/detail-clinic/${clinic.id}`)
+    }
     render() {
+        let { dataClinic } = this.state
         let settings = this.props.settings
         return (
             <div className='section'>
@@ -23,30 +39,18 @@ class MedicalFacility extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...settings}>
-                            <div className='img-custom'>
-                                <img src={choray} alt='' />
-                                <div className='text-section'>Bệnh viện Chợ Rẫy</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={yduoc} alt='' />
-                                <div className='text-section'>Phòng khám Bệnh viện Đại học Y Dược 1</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={vietduc} alt='' />
-                                <div className='text-section'>Bệnh viện Hữu nghị Việt Đức</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={quandoi} alt='' />
-                                <div className='text-section'>Trung tâm Khám sức khỏe định kỳ, Bệnh viện Trung ương Quân đội 108</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={hungviet} alt='' />
-                                <div className='text-section'>Bệnh viện Ung bướu Hưng Việt</div>
-                            </div>
-                            <div className='img-custom'>
-                                <img src={meditec} alt='' />
-                                <div className='text-section'>Phòng khám Đa khoa Meditec</div>
-                            </div>
+                            {dataClinic && dataClinic.length > 0 &&
+                                dataClinic.map((item, index) => {
+                                    return (
+                                        <div className='img-custom' key={index} onClick={() => this.handleViewDetailClinic(item)}>
+                                            <img src={`${item.image}`} alt='' />
+                                            <div className='text-section'>{item.name}</div>
+                                        </div>
+                                    )
+                                })
+                            }
+
+
                         </Slider>
                     </div>
 
@@ -68,4 +72,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(MedicalFacility);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(MedicalFacility));

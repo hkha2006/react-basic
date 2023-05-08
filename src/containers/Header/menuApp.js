@@ -19,9 +19,14 @@ export const adminMenu = [
             //     name: 'menu.admin.manage-admin', link: '/system/user-admin'
             // },
 
-
+            // quản lý kế hoạch khám bệnh của bác sỹ
             {
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
+            },
+            // quản lý bệnh nhân khám bệnh của bác sỹ
+
+            {
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient'
             },
         ]
     },
@@ -60,6 +65,11 @@ export const doctorMenu = [
         menus: [
             {
                 name: 'menu.doctor.manage-schedule', link: '/doctor/manage-schedule'
+            },
+            // quản lý bệnh nhân khám bệnh của bác sỹ
+
+            {
+                name: 'menu.doctor.manage-patient', link: '/doctor/manage-patient'
             },
         ]
     },
