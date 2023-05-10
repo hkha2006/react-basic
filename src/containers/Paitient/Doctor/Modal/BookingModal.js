@@ -134,7 +134,8 @@ class BookingModal extends Component {
             email: this.state.email,
             address: this.state.address,
             reason: this.state.reason,
-            date: date,
+            date: this.props.data.date,
+            birthday: date,
             selectedGender: this.state.selectedGender.value,
             doctorId: this.props.data.doctorId,
             timeType: this.props.data.timeType,
@@ -150,7 +151,6 @@ class BookingModal extends Component {
         else {
             toast.error('Booking a new appointment failed!!!')
         }
-        // console.log('check confirm', doctorName);
     }
 
 
