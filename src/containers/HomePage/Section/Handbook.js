@@ -3,12 +3,30 @@ import { connect } from 'react-redux';
 import Slider from "react-slick"
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import bstuyetnga from '../../../assets/handbook/hb1.jpg'
-
-
+import { getAllHandbooks } from '../../../services/userService';
+import { withRouter } from 'react-router';
 
 class Handbook extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            dataHandbook: []
+        }
+    }
 
+    async componentDidMount() {
+        let res = await getAllHandbooks()
+        console.log('check state', res);
+        if (res && res.errCode === 0) {
+            this.setState({
+                dataHandbook: res.data ? res.data : []
+            })
+        }
+    }
+
+    handleViewDetailHandbook = (handbook) => {
+        this.props.history.push(`/detail-handbook/${handbook.id}`)
+    }
 
     render() {
         let settings = {
@@ -18,6 +36,7 @@ class Handbook extends Component {
             slidesToShow: 2,
             slidesToScroll: 1,
         };
+        let { dataHandbook } = this.state
         return (
             <div className='section'>
                 <div className='section-container'>
@@ -27,25 +46,16 @@ class Handbook extends Component {
                     </div>
                     <div className='section-body'>
                         <Slider {...settings}>
-                            <div className='img-custom handbook'>
-                                <img src={bstuyetnga} alt='' />
-                                <div className='text-section title-hb'>7 bác sĩ khám chữa bệnh Nội tiết Hà Nội giỏi nhiều kinh nghiệm (phần 2)</div>
-                            </div>
-
-                            <div className='img-custom handbook'>
-                                <img src={bstuyetnga} alt='' />
-                                <div className='text-section title-hb'>7 bác sĩ khám chữa bệnh Nội tiết Hà Nội giỏi nhiều kinh nghiệm (phần 2)</div>
-                            </div>
-
-                            <div className='img-custom handbook'>
-                                <img src={bstuyetnga} alt='' />
-                                <div className='text-section title-hb'>7 bác sĩ khám chữa bệnh Nội tiết Hà Nội giỏi nhiều kinh nghiệm (phần 2)</div>
-                            </div>
-
-                            <div className='img-custom handbook'>
-                                <img src={bstuyetnga} alt='' />
-                                <div className='text-section title-hb'>7 bác sĩ khám chữa bệnh Nội tiết Hà Nội giỏi nhiều kinh nghiệm (phần 2)</div>
-                            </div>
+                            {dataHandbook && dataHandbook.length > 0 &&
+                                dataHandbook.map((item, index) => {
+                                    return (
+                                        <div className='img-custom handbook' key={index} onClick={() => this.handleViewDetailHandbook(item)}>
+                                            <img src={`${item.image}`} alt='' />
+                                            <div className='text-section title-hb'>{item.name}</div>
+                                        </div>
+                                    )
+                                })
+                            }
                         </Slider>
                     </div>
 
@@ -67,4 +77,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Handbook);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Handbook));

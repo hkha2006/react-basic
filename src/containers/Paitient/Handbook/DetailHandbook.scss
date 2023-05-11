@@ -1,0 +1,48 @@
+.detail-handbook-container {
+    background-color: rgb(248, 248, 248);
+
+    .detail-handbook-body {
+        margin: 0 auto;
+        font-size: 16px;
+
+        .title-handbook {
+            background: url('../../../assets/backgroud.jpg') 0px -142px;
+            display: flex;
+            height: 200px;
+            margin-bottom: 30px;
+
+            .bg-title {
+                width: 100%;
+                background-image: linear-gradient(rgba(0, 0, 0, 0.25), rgba(255, 255, 255, 0.4));
+
+                .text-title {
+                    margin-top: 65px;
+                    text-align: center;
+                    color: #f91717;
+                    font-size: 30px;
+                    text-transform: uppercase;
+                    font-weight: 600;
+                }
+            }
+
+
+
+
+            // background-repeat: no-repeat;
+            // background-size: cover;
+            // background-position: center;
+        }
+
+        .content-handbook {
+            padding: 5px;
+            width: 50%;
+            margin: 0 auto;
+            background-color: white;
+
+            img {
+                width: 955px;
+                height: auto;
+            }
+        }
+    }
+}

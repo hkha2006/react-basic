@@ -95,6 +95,19 @@ const postSendRedemy = (data) => {
     return axios.post(`/api/send-redemy`, data)
 }
 
+const createNewHandbook = (data) => {
+    return axios.post(`/api/create-new-handbook`, data)
+}
+
+const getAllHandbooks = () => {
+    return axios.get(`/api/get-all-handbooks`)
+}
+
+const getDetailHandbookById = (data) => {
+    return axios.get(`/api/get-detail-handbook-by-id?id=${data.id}`)
+}
+
+
 export {
     handleLogin,
     getAllUsers,
@@ -119,6 +132,9 @@ export {
     getAllClinics,
     getDetailClinicById,
     getAllPatientForDoctor,
-    postSendRedemy
+    postSendRedemy,
+    createNewHandbook,
+    getAllHandbooks,
+    getDetailHandbookById
 }
 

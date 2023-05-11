@@ -13,6 +13,8 @@
             border-radius: 50%;
             margin: 10px 20px;
             background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
         }
 
         .content-right {
@@ -29,6 +31,10 @@
 
             .down {
                 padding-top: 10px;
+
+                .like-share-plugin {
+                    margin: 10px 0 20px 0;
+                }
             }
         }
     }
@@ -52,5 +58,9 @@
         background-color: #f9f9f9;
         padding: 10px 100px;
         border-top: 1px solid #ccc;
+    }
+
+    .comment-doctor {
+        padding: 10px 100px;
     }
 }
